@@ -343,10 +343,10 @@
     </div>
   </section>
 
-  <section>
+  <section id="faq-anchor" style="scroll-margin-top: 96px;">
     <div class="container">
       <div class="section-head" style="text-align:center; margin-left:auto; margin-right:auto;">
-        <span class="eyebrow" id="faq">Frequently asked questions</span>
+        <span class="eyebrow">Frequently asked questions</span>
         <h2>Before you register or get in touch</h2>
       </div>
       <div class="faq" id="faq-list">
@@ -477,56 +477,6 @@
   <script src="js/site.js"></script>
   <script>
     renderNav("home");
-
-    (function() {
-      var slides = document.querySelectorAll(".hero-slide");
-      var dots = document.querySelectorAll(".carousel-dot");
-      var prev = document.querySelector(".carousel-btn.prev");
-      var next = document.querySelector(".carousel-btn.next");
-      var current = 0;
-      var timer = null;
-
-      function goTo(n) {
-        slides.forEach(function(s, i) { s.classList.toggle("active", i === n); });
-        dots.forEach(function(d, i) { d.classList.toggle("active", i === n); });
-        current = n;
-      }
-
-      function advance() { goTo((current + 1) % slides.length); }
-      function rewind() { goTo((current - 1 + slides.length) % slides.length); }
-
-      function start() { stop(); timer = setInterval(advance, 7000); }
-      function stop() { if (timer) { clearInterval(timer); timer = null; } }
-
-      if (next) next.addEventListener("click", function() { advance(); start(); });
-      if (prev) prev.addEventListener("click", function() { rewind(); start(); });
-      dots.forEach(function(d, i) {
-        d.addEventListener("click", function() { goTo(i); start(); });
-      });
-
-      var carousel = document.querySelector(".hero-carousel");
-      if (carousel) {
-        carousel.addEventListener("mouseenter", stop);
-        carousel.addEventListener("mouseleave", start);
-      }
-
-      document.addEventListener("keydown", function(e) {
-        if (e.key === "ArrowRight") { advance(); start(); }
-        if (e.key === "ArrowLeft") { rewind(); start(); }
-      });
-
-      start();
-    })();
-
-    (function() {
-      var list = document.getElementById("faq-list");
-      if (!list) return;
-      list.querySelectorAll(".faq-q").forEach(function(btn) {
-        btn.addEventListener("click", function() {
-          btn.parentElement.classList.toggle("open");
-        });
-      });
-    })();
   </script>
 </body>
 </html>

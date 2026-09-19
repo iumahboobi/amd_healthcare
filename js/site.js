@@ -101,13 +101,69 @@ function renderNav(currentPage) {
 }
 
 function initFaqs() {
-  document.querySelectorAll(".faq").forEach(function(faq) {
-    faq.querySelectorAll(".faq-q").forEach(function(btn) {
-      btn.addEventListener("click", function() {
-        btn.parentElement.classList.toggle("open");
-      });
+  var btns = document.querySelectorAll(".faq-q");
+  btns.forEach(function(btn) {
+    if (btn.dataset.faqBound === "1") return;
+    btn.dataset.faqBound = "1";
+    btn.addEventListener("click", function(e) {
+      var item = btn.closest(".faq-item");
+      if (!item) {
+        item = btn.parentElement;
+      }
+      if (item) item.classList.toggle("open");
+      if (e && typeof e.preventDefault === "function") e.preventDefault();
     });
   });
 }
 
-document.addEventListener("DOMContentLoaded", initFaqs);
+function initCarousel() {
+  var carousel = document.querySelector(".hero-carousel");
+  if (!carousel) return;
+  if (carousel.dataset.carouselBound === "1") return;
+  carousel.dataset.carouselBound = "1";
+
+  var slides = carousel.querySelectorAll(".hero-slide");
+  var dots = carousel.querySelectorAll(".carousel-dot");
+  var prev = carousel.querySelector(".carousel-btn.prev");
+  var next = carousel.querySelector(".carousel-btn.next");
+  var current = 0;
+  var timer = null;
+
+  function goTo(n) {
+    slides.forEach(function(s, i) { s.classList.toggle("active", i === n); });
+    dots.forEach(function(d, i) { d.classList.toggle("active", i === n); });
+    current = n;
+  }
+
+  function advance() { goTo((current + 1) % slides.length); }
+  function rewind() { goTo((current - 1 + slides.length) % slides.length); }
+
+  function start() { stop(); timer = setInterval(advance, 7000); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+  if (next) next.addEventListener("click", function() { advance(); start(); });
+  if (prev) prev.addEventListener("click", function() { rewind(); start(); });
+  dots.forEach(function(d, i) {
+    d.addEventListener("click", function() { goTo(i); start(); });
+  });
+
+  carousel.addEventListener("mouseenter", stop);
+  carousel.addEventListener("mouseleave", start);
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "ArrowRight") { advance(); start(); }
+    if (e.key === "ArrowLeft") { rewind(); start(); }
+  });
+
+  start();
+}
+
+function runBootstrap() {
+  initFaqs();
+  initCarousel();
+}
+
+document.addEventListener("DOMContentLoaded", runBootstrap);
+if (document.readyState === "interactive" || document.readyState === "complete") {
+  runBootstrap();
+}
