@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Join the Network — Afghan Medical Diaspora</title>
+  <meta name="description" content="Register your interest in joining the Afghan Medical Diaspora network — Afghan doctors and healthcare professionals living abroad who want to support healthcare in Afghanistan." />
+  <meta property="og:title" content="Join the Network — Afghan Medical Diaspora" />
+  <meta property="og:description" content="Register interest. No obligation. No documents to upload yet." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='19' fill='%230f766e'/%3E%3Cpath d='M20 12 v16 M12 20 h16' stroke='%23fff' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <div id="nav-mount"></div>
+
+  <section class="page-banner">
+    <div class="page-banner-bg" style="background-image:url('img/banner-join.jpg'); background-size:cover; background-position:center;"></div>
+    <div class="page-banner-inner">
+      <div class="container">
+        <span class="page-banner-tag">Join the Network</span>
+        <h1>Join the Afghan Healthcare Diaspora</h1>
+        <p>
+          Are you an Afghan doctor or healthcare professional living abroad?
+          Register your interest — there is no obligation to participate.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container" style="max-width:880px;">
+      <div class="notice" style="margin-bottom:36px;">
+        <strong>Before you start:</strong>
+        <p style="margin-top:8px;">
+          We are currently in the <strong>development and network-building phase</strong>.
+          This form registers <em>interest</em> — it is <strong>not</strong> an application for clinical practice.
+          We will <em>not</em> ask you to upload a passport, medical license, certificates, CV, or ID documents today.
+          A proper credential-verification process would only happen later, if and when you are selected for a future rotation.
+        </p>
+      </div>
+
+      <div class="form-wrap">
+        <div class="form-success" id="form-success">
+          <strong>Thank you for registering your interest.</strong><br/>
+          We have received your details and will be in touch as the network and program develop.
+        </div>
+
+        <form id="join-form" novalidate>
+          <div class="form-section">
+            <div class="form-section-title">Your profession</div>
+            <div class="form-section-desc">
+              We welcome physicians and a wide range of other healthcare professionals.
+            </div>
+
+            <div class="field">
+              <label>Professional category<span class="req">*</span></label>
+              <select class="select" name="profession" id="profession" required>
+                <option value="">Please select</option>
+                <option value="doctor">Physician / Doctor</option>
+                <option value="nurse">Nurse or Nurse Specialist</option>
+                <option value="anesthetic">Anesthetic / Perioperative Professional</option>
+                <option value="radiology">Radiologist / Radiographer / Sonographer</option>
+                <option value="laboratory">Laboratory / Pathology Professional</option>
+                <option value="biomedical">Biomedical Engineer / Equipment Technician</option>
+                <option value="pharmacist">Pharmacist / Pharmacy Technician</option>
+                <option value="admin">Medical Administrator / Manager</option>
+                <option value="public-health">Public Health / Dentistry / Allied Health</option>
+                <option value="other">Other healthcare role</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">Personal</div>
+            <div class="form-section-desc">How we can get in touch with you.</div>
+
+            <div class="row">
+              <div class="field">
+                <label>First name<span class="req">*</span></label>
+                <input class="input" name="firstName" type="text" required />
+              </div>
+              <div class="field">
+                <label>Last name<span class="req">*</span></label>
+                <input class="input" name="lastName" type="text" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label>Country of residence<span class="req">*</span></label>
+                <input class="input" name="countryResidence" type="text" required />
+              </div>
+              <div class="field">
+                <label>City</label>
+                <input class="input" name="city" type="text" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label>Email<span class="req">*</span></label>
+                <input class="input" name="email" type="email" required />
+              </div>
+              <div class="field">
+                <label>Phone / WhatsApp</label>
+                <input class="input" name="phone" type="tel" placeholder="+49 ..." />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section" id="doctor-professional-section">
+            <div class="form-section-title">Professional</div>
+            <div class="form-section-desc">
+              A brief picture of your background so we can understand the network.
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label id="label-specialty">Medical specialty</label>
+                <input class="input" name="specialty" type="text" />
+              </div>
+              <div class="field">
+                <label id="label-subspecialty">Subspecialty (if applicable)</label>
+                <input class="input" name="subspecialty" type="text" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label>Years of experience</label>
+                <select class="select" name="years">
+                  <option value="">Prefer not to say</option>
+                  <option>Fewer than 5 years</option>
+                  <option>5–10 years</option>
+                  <option>11–20 years</option>
+                  <option>More than 20 years</option>
+                </select>
+              </div>
+              <div class="field">
+                <label id="label-position">Current professional position</label>
+                <input class="input" name="position" type="text" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label id="label-qualification-country">Country where you obtained your primary qualification</label>
+                <input class="input" name="qualificationCountry" type="text" />
+              </div>
+              <div class="field">
+                <label id="label-practice-country">Country where you currently practice / work</label>
+                <input class="input" name="practiceCountry" type="text" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Languages you can work in (clinical / teaching)</label>
+              <input class="input" name="languages" type="text" placeholder="Dari, Pashto, English, German, ..." />
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">Participation</div>
+            <div class="form-section-desc">
+              How you might potentially like to contribute — select as many as apply. Remember, this is interest only.
+            </div>
+
+            <div class="check-group" role="group" aria-label="Contribution type">
+              <label class="check-item">
+                <input type="checkbox" name="contribution" value="clinical" />
+                <span>2–3 month clinical rotation</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" name="contribution" value="shorter" />
+                <span>Shorter medical mission</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" name="contribution" value="teaching" />
+                <span>Teaching / training</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" name="contribution" value="mentorship" />
+                <span>Remote mentorship</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" name="contribution" value="equipment" />
+                <span>Help with medical equipment</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" name="contribution" value="organisation" />
+                <span>Help with organisation / fundraising</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" name="contribution" value="info" />
+                <span>I am interested but would like more information</span>
+              </label>
+            </div>
+
+            <div style="height:14px;"></div>
+
+            <div class="field">
+              <label>How often might you be available?</label>
+              <div class="check-group" role="group" aria-label="Availability">
+                <label class="check-item">
+                  <input type="checkbox" name="availability" value="yearly" />
+                  <span>Once a year</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="availability" value="few" />
+                  <span>Every 2–3 years</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="availability" value="occasionally" />
+                  <span>Occasionally</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="availability" value="unsure" />
+                  <span>Not sure yet</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Which locations in Afghanistan would you potentially consider?</label>
+              <div class="check-group" role="group" aria-label="Locations">
+                <label class="check-item">
+                  <input type="checkbox" name="locations" value="kandahar" />
+                  <span>Kandahar <em>— initial focus of the program</em></span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="locations" value="kabul" />
+                  <span>Kabul</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="locations" value="herat" />
+                  <span>Herat</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="locations" value="mazar" />
+                  <span>Mazar-i-Sharif</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="locations" value="jalalabad" />
+                  <span>Jalalabad</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="locations" value="other" />
+                  <span>Other / would depend on the opportunity</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Anything else you'd like us to know?</label>
+              <textarea class="textarea" name="notes" placeholder="Optional. Concerns, questions, or anything that would shape a future program."></textarea>
+            </div>
+          </div>
+
+          <div class="consent">
+            <p><strong>Privacy and consent</strong></p>
+            <p>
+              The information you provide on this form is used only to manage the Afghan Medical Diaspora network
+              and contact you about the initiative. We will not share your details with any third party without
+              your explicit permission, and we will store them securely in line with applicable law (including GDPR).
+              You can ask to update or delete your information at any time by contacting us.
+            </p>
+
+            <label class="check-item">
+              <input type="checkbox" name="consentStore" required />
+              <span><span class="req">*</span> I consent to the Afghan Medical Diaspora initiative storing the information above in order to manage the network and contact me about the program.</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="consentContact" />
+              <span>I would like to receive occasional updates about the initiative as it develops (news from the network, partnership progress, etc.).</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Submit — Join the Network</button>
+        </form>
+      </div>
+
+      <div style="margin-top:48px; text-align:center; color:var(--text-muted); font-size:14px;">
+        Prefer to register by email? Write to us at <strong>join@afghanmedicaldiaspora.org</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-alt">
+    <div class="container" style="max-width:860px;">
+      <div class="section-head" style="text-align:center; margin-left:auto; margin-right:auto;">
+        <span class="eyebrow">Questions about joining</span>
+        <h2>Answers to the questions we get most often</h2>
+      </div>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-q">Do I have to travel to Afghanistan to be part of the network?</button>
+          <div class="faq-a">
+            Not at all. Remote mentorship, teaching, specialist advisory input, help with equipment, and program organisation are all valuable ways to contribute from your country of residence.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What happens after I submit this form?</button>
+          <div class="faq-a">
+            Your details are stored securely and only used for this initiative. You'll receive a confirmation (if you opted in to updates) and we'll follow up when we have program updates, surveys, or opportunities that match the profile you shared.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can I refer a colleague?</button>
+          <div class="faq-a">
+            Yes — absolutely. Just ask them to fill in the form themselves. We're building the network broadly, so referrals from trusted colleagues are one of the most valuable ways to grow.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How can I change or delete my details later?</button>
+          <div class="faq-a">
+            Reply to any email from us, or write to <strong>join@afghanmedicaldiaspora.org</strong>, and we will update or remove your records without delay.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What personal data is stored?</button>
+          <div class="faq-a">
+            Only what you enter on this form: name, contact details, professional profile, participation preferences, and notes. Nothing else is added automatically. Full details are in the <a href="privacy.html">Privacy notice</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-mount"></div>
+  <script src="js/site.js"></script>
+  <script>
+    renderNav("join");
+
+    (function() {
+      var profession = document.getElementById("profession");
+      var labelSpecialty = document.getElementById("label-specialty");
+      var labelSub = document.getElementById("label-subspecialty");
+      var labelPos = document.getElementById("label-position");
+      var labelQual = document.getElementById("label-qualification-country");
+      var labelPrac = document.getElementById("label-practice-country");
+
+      function adaptLabels() {
+        var v = profession.value;
+        labelSpecialty.textContent = v === "doctor" ? "Medical specialty"
+          : v === "nurse" ? "Nursing specialty / area"
+          : v === "radiology" ? "Imaging area / modality"
+          : v === "laboratory" ? "Laboratory / pathology area"
+          : v === "pharmacist" ? "Area of pharmacy practice"
+          : v === "biomedical" ? "Primary area (e.g. equipment, maintenance)"
+          : v === "admin" ? "Area of administration / management"
+          : v === "anesthetic" ? "Anesthetic / perioperative role"
+          : "Area of practice";
+
+        labelSub.textContent = v === "doctor" ? "Subspecialty (if applicable)" : "Further detail (if applicable)";
+        labelPos.textContent = v === "doctor" ? "Current professional position" : "Current role / position";
+        labelQual.textContent = v === "doctor" ? "Country where you obtained your primary qualification" : "Country where you obtained your primary qualification";
+        labelPrac.textContent = v === "doctor" ? "Country where you currently practice / work" : "Country where you currently work";
+      }
+
+      profession.addEventListener("change", adaptLabels);
+      adaptLabels();
+
+      var params = new URLSearchParams(location.search);
+      if (params.get("profession")) {
+        var val = params.get("profession");
+        if (Array.from(profession.options).some(function(o) { return o.value === val; })) {
+          profession.value = val;
+          adaptLabels();
+        }
+      }
+
+      var form = document.getElementById("join-form");
+      var success = document.getElementById("form-success");
+
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        form.querySelectorAll(".field").forEach(function(f) { f.classList.remove("has-error"); });
+
+        var valid = true;
+        form.querySelectorAll("[required]").forEach(function(el) {
+          if (!el.value || (el.type === "checkbox" && !el.checked)) {
+            valid = false;
+            var f = el.closest(".field");
+            if (f) f.classList.add("has-error");
+          }
+        });
+
+        if (!valid) return;
+        form.reset();
+        success.classList.add("show");
+        success.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    })();
+  </script>
+</body>
+</html>

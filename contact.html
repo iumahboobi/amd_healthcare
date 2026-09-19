@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Afghan Medical Diaspora</title>
+  <meta name="description" content="Get in touch with the Afghan Medical Diaspora initiative." />
+  <meta property="og:title" content="Contact — Afghan Medical Diaspora" />
+  <meta property="og:description" content="Hospital partnerships, media, support, or general questions — get in touch." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='19' fill='%230f766e'/%3E%3Cpath d='M20 12 v16 M12 20 h16' stroke='%23fff' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <div id="nav-mount"></div>
+
+  <section class="page-banner">
+    <div class="page-banner-bg" style="background-image:url('img/banner-contact.jpg'); background-size:cover; background-position:center;"></div>
+    <div class="page-banner-inner">
+      <div class="container">
+        <span class="page-banner-tag">Contact</span>
+        <h1>Get in touch</h1>
+        <p>
+          Have a question about the initiative, representing a hospital or institution,
+          or want to offer support beyond joining the network? We'd love to hear from you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="split">
+        <div>
+          <span class="eyebrow">The fastest way</span>
+          <h2>Doctors & healthcare professionals</h2>
+          <p>
+            If you are an Afghan doctor or healthcare professional living abroad and you
+            want to register your interest, the fastest route is the Join the Network form.
+            It takes about two minutes.
+          </p>
+          <div style="margin:20px 0 32px;">
+            <a href="join.html" class="btn btn-primary">Go to Join the Network</a>
+          </div>
+
+          <h3>Everything else</h3>
+          <p>
+            Hospitals, institutions, funders, logistics partners, media, or general questions
+            about the initiative — use the contact form or email us directly.
+          </p>
+          <div style="margin-top:20px;" class="card" style="border-color:#e2d0a6; background:#fffaf0;">
+            <div class="card-icon" style="background:linear-gradient(135deg, rgba(200,138,42,0.14), rgba(200,138,42,0.04)); color:#a57321;">@</div>
+            <h3 style="color:#714f15;">Email</h3>
+            <p style="color:#6b5a37;">
+              <strong>contact@afghanmedicaldiaspora.org</strong><br/>
+              <strong>join@afghanmedicaldiaspora.org</strong> (network registrations by email)<br/>
+              <span style="font-size:13px;">We reply as soon as we can — this is a small volunteer-run initiative.</span>
+            </p>
+          </div>
+
+          <div style="height:22px;"></div>
+          <div class="card">
+            <div class="card-icon">⌂</div>
+            <h3>Based in Germany</h3>
+            <p>
+              The initiative is being coordinated from Germany. General data handling is
+              designed with GDPR in mind from day one — see the
+              <a href="privacy.html">Privacy notice</a> for details.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <form class="form-wrap" id="contact-form" novalidate>
+            <div class="form-success" id="contact-success">
+              <strong>Thanks for reaching out.</strong><br/>
+              We have received your message and will get back to you shortly.
+            </div>
+
+            <div class="form-section">
+              <div class="form-section-title">Your message</div>
+              <div class="form-section-desc">A few details so we can reply to the right person.</div>
+
+              <div class="row">
+                <div class="field">
+                  <label>First name<span class="req">*</span></label>
+                  <input class="input" name="firstName" type="text" required />
+                </div>
+                <div class="field">
+                  <label>Last name<span class="req">*</span></label>
+                  <input class="input" name="lastName" type="text" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Email<span class="req">*</span></label>
+                <input class="input" name="email" type="email" required />
+              </div>
+
+              <div class="field">
+                <label>Organisation / Affiliation</label>
+                <input class="input" name="organisation" type="text" />
+              </div>
+
+              <div class="field">
+                <label>How can we help?<span class="req">*</span></label>
+                <select class="select" name="topic" required>
+                  <option value="">Please select</option>
+                  <option>Hospital / institution partnership</option>
+                  <option>Supporting the initiative / fundraising</option>
+                  <option>Press or media enquiry</option>
+                  <option>General question</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Message<span class="req">*</span></label>
+                <textarea class="textarea" name="message" required></textarea>
+              </div>
+            </div>
+
+            <div class="consent">
+              <p>
+                By submitting this form, you confirm that the information provided is accurate and
+                you consent to us storing and using your details in order to reply to you.
+                Read more in the <a href="privacy.html">Privacy notice</a>.
+              </p>
+              <label class="check-item">
+                <input type="checkbox" name="consent" required />
+                <span><span class="req">*</span> I consent to being contacted in relation to this enquiry.</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Send message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-mount"></div>
+  <script src="js/site.js"></script>
+  <script>
+    renderNav("contact");
+
+    (function() {
+      var form = document.getElementById("contact-form");
+      var success = document.getElementById("contact-success");
+
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        form.querySelectorAll(".field").forEach(function(f) { f.classList.remove("has-error"); });
+
+        var valid = true;
+        form.querySelectorAll("[required]").forEach(function(el) {
+          if (!el.value || (el.type === "checkbox" && !el.checked)) {
+            valid = false;
+            var f = el.closest(".field") || el.closest(".consent");
+            if (f && f.classList && f.classList.contains("field")) f.classList.add("has-error");
+          }
+        });
+
+        if (!valid) return;
+        form.reset();
+        success.classList.add("show");
+        success.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    })();
+  </script>
+</body>
+</html>

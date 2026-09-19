@@ -1,0 +1,61 @@
+Afghan Medical Diaspora — image list
+=======================================
+
+Drop your JPG / PNG / WEBP files into this folder with the exact filenames below.
+The site references each one directly via relative paths (no external CDN needed).
+
+Home page — index.html
+----------------------
+  hero-01.jpg            Home carousel slide 1 (welcome /  Afghan Medical Diaspora headline)
+  hero-02.jpg            Home carousel slide 2 (Build the mission with Afghan colleagues)
+  hero-03.jpg            Home carousel slide 3 (Every healthcare role matters)
+  hero-04.jpg            Home carousel slide 4 (Starting in one city — Kandahar focus)
+  hero-05.jpg            Home carousel slide 5 (Be one of the first 100 in the network)
+  split-index-01.jpg     Home split "A program designed together with Afghan doctors"
+  split-index-02.jpg     Home split "Doctors are only the start of it" (Everyone welcome)
+
+Mission page — mission.html
+---------------------------
+  banner-mission.jpg     Mission page top banner
+  split-mission.jpg      Mission split "Start small. Learn fast. Expand carefully."
+
+Doctors page — doctors.html
+---------------------------
+  banner-doctors.jpg     Doctors page top banner
+  split-doctors.jpg      Doctors split "Questions we want to ask the first 100 doctors"
+
+Professionals page — professionals.html
+---------------------------------------
+  banner-professionals.jpg      Professionals page top banner
+  split-professionals.jpg       Professionals split "A broader network creates a stronger program"
+  portrait-nursing.jpg          Portrait row, column 1 (Clinical Nursing label)
+  portrait-radiology.jpg        Portrait row, column 2 (Radiology & Imaging label)
+  portrait-biomedical.jpg       Portrait row, column 3 (Biomedical & Pharmacy label)
+
+Partners page — partners.html
+-----------------------------
+  banner-partners.jpg           Partners (Hospitals & Partners) page top banner
+  split-partners-focus.jpg      Partners split "Our initial focus is Kandahar"
+  split-partners-mou.jpg        Partners split "Next steps for partners" (MoU / signing)
+
+Join page — join.html
+---------------------
+  banner-join.jpg        Join the Network page top banner
+
+Contact page — contact.html
+---------------------------
+  banner-contact.jpg     Contact page top banner
+
+Privacy page — privacy.html
+---------------------------
+  banner-privacy.jpg     Privacy notice page top banner
+
+404 page — 404.html
+-------------------
+  banner-404.jpg         404 error page top banner
+
+Suggested sizes (width x height, at least):
+  hero-*.jpg             1600 x 900  (16:9 landscape)
+  banner-*.jpg           1600 x 900  (16:9 landscape)
+  split-*.jpg            800 x 600   (4:3 landscape)
+  portrait-*.jpg         600 x 800   (3:4 portrait)
