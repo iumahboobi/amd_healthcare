@@ -1,5 +1,6 @@
 # Runtime secrets & local data — NEVER commit
 .env
+.env.example
 server/.env
 data/*.db
 data/*.sqlite
