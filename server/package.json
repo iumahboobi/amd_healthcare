@@ -1,0 +1,29 @@
+{
+  "name": "afghan-medical-diaspora-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Node.js Express backend for Join the Network and Contact forms with SMTP email + SQLite/Postgres/MySQL storage. Uses Node built-in node:sqlite by default (zero native modules).",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "last": "node scripts/show-last-submissions.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "helmet": "^7.1.0",
+    "mysql2": "^3.11.3",
+    "nodemailer": "^6.9.15",
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

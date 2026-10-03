@@ -1,0 +1,26 @@
+# Runtime secrets & local data — NEVER commit
+.env
+server/.env
+data/*.db
+data/*.sqlite
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+data/email-failures/*.json
+
+# Node / install artifacts
+node_modules/
+server/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS junk
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# IDE local workspace / plan drafts
+.trae/
+.vscode/
+.idea/

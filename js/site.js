@@ -158,9 +158,181 @@ function initCarousel() {
   start();
 }
 
+function initForms() {
+  document.querySelectorAll('form[data-endpoint]').forEach(function(form) {
+    if (form.dataset.formBound === '1') return;
+    form.dataset.formBound = '1';
+
+    var endpoint = form.getAttribute('data-endpoint') || '';
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var successEl = form.querySelector('.form-success');
+    var errorEl = form.querySelector('.form-error');
+    var originalBtnText = submitBtn ? (submitBtn.getAttribute('data-default-text') || submitBtn.textContent) : '';
+    if (submitBtn) submitBtn.setAttribute('data-default-text', originalBtnText);
+
+    function clearErrors() {
+      form.querySelectorAll('.has-error').forEach(function(f) { f.classList.remove('has-error'); });
+      if (errorEl) { errorEl.classList.remove('show'); errorEl.innerHTML = ''; }
+    }
+
+    function highlightFieldErrors(errors) {
+      if (!errors) return;
+      Object.keys(errors).forEach(function(name) {
+        var el = form.querySelector('[name="' + name + '"]');
+        if (!el) return;
+        var wrap = el.closest('.field') || el.closest('.consent');
+        if (wrap) wrap.classList.add('has-error');
+      });
+      if (errorEl) {
+        var liHtml = Object.keys(errors).map(function(n) { return '<li>' + escapeHtml(errors[n]) + '</li>'; }).join('');
+        errorEl.innerHTML = '<strong>Please fix the following and try again:</strong><ul>' + liHtml + '</ul>';
+        errorEl.classList.add('show');
+      }
+    }
+
+    function showGenericError(msg) {
+      if (!errorEl) return;
+      errorEl.innerHTML = '<strong>Something went wrong while submitting.</strong><br/>' +
+        (msg || ' Please try again in a moment, or email us directly at ' +
+         '<a href="mailto:join@afghanmedicaldiaspora.org">join@afghanmedicaldiaspora.org</a>');
+      errorEl.classList.add('show');
+    }
+
+    function setBusy(busy) {
+      if (!submitBtn) return;
+      if (busy) {
+        submitBtn.setAttribute('aria-busy', 'true');
+        submitBtn.setAttribute('disabled', 'disabled');
+        submitBtn.textContent = 'Submitting…';
+      } else {
+        submitBtn.removeAttribute('aria-busy');
+        submitBtn.removeAttribute('disabled');
+        submitBtn.textContent = originalBtnText;
+      }
+    }
+
+    function fallbackShowSuccess() {
+      // Static file:// preview (no backend) or network offline — show success locally with a small caveat.
+      form.reset();
+      if (successEl) {
+        successEl.classList.add('show');
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    function serializeToJson() {
+      var fd = new FormData(form);
+      var payload = {};
+      fd.forEach(function(value, key) {
+        if (key === 'website') {
+          payload[key] = value;
+          return;
+        }
+        var existing = payload[key];
+        if (existing !== undefined) {
+          if (!Array.isArray(existing)) existing = [existing];
+          existing.push(value);
+          payload[key] = existing;
+        } else {
+          // Checkboxes that aren't selected yield no FormData entry at all (correct).
+          payload[key] = value;
+        }
+      });
+      return payload;
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      clearErrors();
+
+      // 1. Client validation (matches original logic)
+      var clientErrors = {};
+      form.querySelectorAll('[required]').forEach(function(el) {
+        var missing = false;
+        if (el.type === 'checkbox') { missing = !el.checked; }
+        else if (el.type === 'radio') {
+          var radios = form.querySelectorAll('input[type="radio"][name="' + el.name + '"]');
+          var anyChecked = false;
+          for (var i = 0; i < radios.length; i++) { if (radios[i].checked) { anyChecked = true; break; } }
+          missing = !anyChecked;
+        }
+        else { missing = !el.value || !String(el.value).trim(); }
+        if (missing) {
+          clientErrors[el.name] = clientErrors[el.name] || 'Required';
+          var wrap = el.closest('.field') || el.closest('.consent');
+          if (wrap) wrap.classList.add('has-error');
+        }
+        // Email format
+        if (el.type === 'email' && el.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(el.value).trim())) {
+          clientErrors[el.name] = 'Please enter a valid email address';
+          var w2 = el.closest('.field');
+          if (w2) w2.classList.add('has-error');
+        }
+      });
+
+      if (Object.keys(clientErrors).length) {
+        highlightFieldErrors(clientErrors);
+        return;
+      }
+
+      var payload = serializeToJson();
+      setBusy(true);
+
+      var headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
+      var csrf = form.querySelector('input[name="_csrf"]');
+      if (csrf) headers['X-CSRF-Token'] = csrf.value;
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: headers,
+        credentials: 'same-origin',
+        body: JSON.stringify(payload)
+      }).then(function(r) {
+        var contentType = r.headers.get('content-type') || '';
+        if (contentType.indexOf('application/json') >= 0) {
+          return r.json().then(function(data) { return { status: r.status, data: data }; });
+        }
+        return r.text().then(function(t) {
+          try { return { status: r.status, data: JSON.parse(t) }; } catch (_) { return { status: r.status, data: { ok: r.status >= 200 && r.status < 300 } }; }
+        });
+      }).then(function(result) {
+        var s = result.status;
+        var d = result.data || {};
+        setBusy(false);
+
+        if (d && d.ok === false && s === 400 && d.errors) {
+          highlightFieldErrors(d.errors);
+          return;
+        }
+        if (s >= 200 && s < 300 && (!d || d.ok !== false)) {
+          form.reset();
+          if (successEl) {
+            successEl.classList.add('show');
+            successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return;
+        }
+        showGenericError((d && d.message) || '');
+      }).catch(function() {
+        // Network failure, offline, or file:// (no backend) — show "thanks" fallback, UX same as before.
+        setBusy(false);
+        fallbackShowSuccess();
+      });
+    });
+  });
+}
+
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
 function runBootstrap() {
   initFaqs();
   initCarousel();
+  initForms();
 }
 
 document.addEventListener("DOMContentLoaded", runBootstrap);

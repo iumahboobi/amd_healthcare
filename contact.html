@@ -72,11 +72,13 @@
         </div>
 
         <div>
-          <form class="form-wrap" id="contact-form" novalidate>
-            <div class="form-success" id="contact-success">
+          <form class="form-wrap" id="contact-form" novalidate data-endpoint="/api/contact" data-mode="contact">
+            <input class="honey" name="website" tabindex="-1" autocomplete="off" type="text" aria-hidden="true" />
+            <div class="form-success" id="contact-success" role="status">
               <strong>Thanks for reaching out.</strong><br/>
               We have received your message and will get back to you shortly.
             </div>
+            <div class="form-error" id="contact-error" role="alert"></div>
 
             <div class="form-section">
               <div class="form-section-title">Your message</div>
@@ -144,30 +146,6 @@
   <script src="js/site.js"></script>
   <script>
     renderNav("contact");
-
-    (function() {
-      var form = document.getElementById("contact-form");
-      var success = document.getElementById("contact-success");
-
-      form.addEventListener("submit", function(e) {
-        e.preventDefault();
-        form.querySelectorAll(".field").forEach(function(f) { f.classList.remove("has-error"); });
-
-        var valid = true;
-        form.querySelectorAll("[required]").forEach(function(el) {
-          if (!el.value || (el.type === "checkbox" && !el.checked)) {
-            valid = false;
-            var f = el.closest(".field") || el.closest(".consent");
-            if (f && f.classList && f.classList.contains("field")) f.classList.add("has-error");
-          }
-        });
-
-        if (!valid) return;
-        form.reset();
-        success.classList.add("show");
-        success.scrollIntoView({ behavior: "smooth", block: "center" });
-      });
-    })();
   </script>
 </body>
 </html>

@@ -42,12 +42,15 @@
       </div>
 
       <div class="form-wrap">
-        <div class="form-success" id="form-success">
-          <strong>Thank you for registering your interest.</strong><br/>
-          We have received your details and will be in touch as the network and program develop.
+        <div class="form-success" id="join-success" role="status">
+          <strong>Thank you — your registration was received.</strong><br/>
+          A confirmation has been sent to the email you provided, and the network team has been notified.
+          We will follow up as the program develops.
         </div>
+        <div class="form-error" id="join-error" role="alert"></div>
 
-        <form id="join-form" novalidate>
+        <form id="join-form" novalidate data-endpoint="/api/join" data-mode="join">
+          <input class="honey" name="website" tabindex="-1" autocomplete="off" type="text" aria-hidden="true" />
           <div class="form-section">
             <div class="form-section-title">Your profession</div>
             <div class="form-section-desc">
@@ -370,29 +373,6 @@
           adaptLabels();
         }
       }
-
-      var form = document.getElementById("join-form");
-      var success = document.getElementById("form-success");
-
-      form.addEventListener("submit", function(e) {
-        e.preventDefault();
-
-        form.querySelectorAll(".field").forEach(function(f) { f.classList.remove("has-error"); });
-
-        var valid = true;
-        form.querySelectorAll("[required]").forEach(function(el) {
-          if (!el.value || (el.type === "checkbox" && !el.checked)) {
-            valid = false;
-            var f = el.closest(".field");
-            if (f) f.classList.add("has-error");
-          }
-        });
-
-        if (!valid) return;
-        form.reset();
-        success.classList.add("show");
-        success.scrollIntoView({ behavior: "smooth", block: "center" });
-      });
     })();
   </script>
 </body>
